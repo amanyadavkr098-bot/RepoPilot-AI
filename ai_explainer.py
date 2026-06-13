@@ -5,24 +5,57 @@ import os
 load_dotenv()
 
 client = OpenAI(
-    api_key=os.getenv("OPENROUTER_API_KEY"),
-    base_url="https://openrouter.ai/api/v1"
+    base_url="https://openrouter.ai/api/v1",
+    api_key=os.getenv("OPENROUTER_API_KEY")
 )
+
+MODEL = "google/gemma-3-4b-it:free"
+
+
+def safe_ai_call(prompt):
+    """Safe AI wrapper so app never crashes"""
+
+    try:
+        response = client.chat.completions.create(
+            model=MODEL,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ]
+        )
+
+        if response and response.choices:
+            message = response.choices[0].message
+
+            if message and message.content:
+                return message.content
+
+        return "AI response unavailable."
+
+    except Exception:
+        return "AI analysis temporarily unavailable."
 
 
 def summarize_readme(readme_text):
+    """Generate beginner-friendly repository summary"""
+
+    if not readme_text:
+        return "README unavailable."
+
     prompt = f"""
 You are RepoPilot AI.
 
 Explain this GitHub repository for beginners.
 
-Give output in this EXACT format:
+Return in EXACT format.
 
 ## What This Repo Does
 (short explanation)
 
 ## Main Technologies
-(bullet points)
+(bullets)
 
 ## Beginner Level
 (Beginner / Intermediate / Advanced)
@@ -31,121 +64,75 @@ Give output in this EXACT format:
 (short explanation)
 
 ## Contribution Advice
-(Where beginners should start)
+(beginner-friendly)
 
 ## Simple Explanation
 (explain like a beginner)
 
-Keep answers concise and practical.
+Keep concise.
 
 README:
 {readme_text[:4000]}
 """
 
-    response = client.chat.completions.create(
-    model="google/gemma-4-31b-it:free",
-    messages=[
-        {
-            "role": "user",
-            "content": prompt
-        }
-    ]
-)
-
-    return response.choices[0].message.content
+    return safe_ai_call(prompt)
 
 
 def explain_folders(folder_list):
+    """Explain repository folders"""
 
-    try:
-        prompt = f"""
-        Explain these repository folders
-        for beginner contributors.
+    prompt = f"""
+Explain these repository folders for beginner contributors.
 
-        ONLY explain important folders.
+ONLY explain important folders.
 
-        Keep answers short.
+Keep concise.
 
-        Format:
+Format:
 
-        folder → purpose
+folder → purpose
 
-        Repository structure:
-        {folder_list}
-        """
+Repository structure:
+{folder_list}
+"""
 
-        response = client.chat.completions.create(
-            model="google/gemma-3-4b-it:free",
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ]
-        )
+    return safe_ai_call(prompt)
 
-        if response and response.choices:
 
-            message = response.choices[0].message
+def contribution_path(summary, tech_stack, folders):
+    """Beginner contribution roadmap"""
 
-            if message and message.content:
-                return message.content
+    prompt = f"""
+You are an open-source mentor.
 
-        return "Could not explain folders."
+Based on this repository, give practical beginner contribution guidance.
 
-    except Exception as e:
-        return f"Folder explanation unavailable."
+Return:
 
-def contribution_path(
-    summary,
-    tech_stack,
-    folders
-):
+1. Difficulty level
 
-    try:
-        prompt = f"""
-        You are a GitHub open-source mentor.
+2. Best place to start
 
-        Based on this repository info,
-        give beginner-friendly contribution advice.
+3. Files/folders beginners should explore
 
-        Tell:
-        1. Difficulty level
-        2. Best place to start
-        3. What folders to explore
-        4. What to avoid
-        5. Small first contribution ideas
+4. What to avoid
 
-        Keep it concise.
+5. Small first contribution ideas
 
-        Repository summary:
-        {summary}
+Rules:
+- Keep under 150 words
+- Use bullet points
+- Be concise
+- Practical advice only
 
-        Tech stack:
-        {tech_stack}
+Repository summary:
+{summary}
 
-        Folder structure:
-        {folders}
-        """
+Tech stack:
+{tech_stack}
 
-        response = client.chat.completions.create(
-            model="google/gemma-3-4b-it:free",
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ]
-        )
+Folders:
+{folders}
+"""
 
-        if response and response.choices:
-
-            message = response.choices[0].message
-
-            if message and message.content:
-                return message.content
-
-        return "Could not generate contribution guide."
-
-    except Exception:
-        return "Contribution guide unavailable."
+    return safe_ai_call(prompt)
