@@ -1,326 +1,424 @@
-# 🚀 RepoPilot AI
 
-**RepoPilot AI** helps developers understand unfamiliar GitHub repositories faster.
+# RepoPilot AI 🚀  
+### AI-Powered Open Source Intelligence for Contributors
 
-Paste any GitHub repository URL and instantly get:
+RepoPilot AI helps developers understand unfamiliar GitHub repositories and discover the best way to contribute.
 
-* 🤖 **AI-powered repository summary**
-* 🛠 **Accurate tech stack breakdown**
-* 📊 **Repository health metrics**
-* 🚌 **Bus factor risk analysis**
-* 💬 **Maintainer responsiveness insights**
-* 🐛 **Beginner-friendly contribution paths**
-* 📂 **Repository folder explanations**
-* 🔥 **Maintainer activity heatmap**
+Built for the **Microsoft AI Skills Fest Hackathon**, RepoPilot AI uses **Azure AI Foundry IQ** to analyze repositories, explain project structure, evaluate contribution difficulty, and guide beginners toward meaningful first contributions.
 
-Built for **students, open-source beginners, contributors, and developers** exploring unfamiliar codebases.
+Instead of overwhelming contributors with thousands of files, issues, and unfamiliar code, RepoPilot AI transforms repositories into **actionable contributor intelligence**.
+
+---
+
+## 🌍 Problem Statement
+
+Open source is difficult to enter.
+
+New contributors often struggle with:
+
+- Understanding large repositories
+- Figuring out what the project actually does
+- Knowing where to start contributing
+- Finding beginner-friendly tasks
+- Understanding folder structures
+- Evaluating repository health
+- Predicting maintainer responsiveness
+
+This causes many developers to abandon open-source contributions before making their first pull request.
+
+### Our Solution
+
+RepoPilot AI acts like an **AI-powered open-source mentor**.
+
+Simply enter a GitHub repository URL and RepoPilot AI will:
+
+✅ Explain the repository in beginner-friendly language  
+✅ Detect technologies automatically  
+✅ Recommend where to start contributing  
+✅ Analyze repository health  
+✅ Suggest first contribution areas  
+✅ Explain folder structure  
+✅ Provide contribution roadmaps  
 
 ---
 
 ## ✨ Features
 
-### 🤖 AI Repository Summary
+### 🔍 Repository Intelligence
+- AI-generated repository summaries
+- Beginner-friendly explanations
+- Technology stack detection
+- Repository purpose breakdown
+- Folder structure explanations
 
-Get a beginner-friendly explanation of what the repository does, who should contribute, and how to get started.
+### 🧠 Contribution Guidance
+- Contribution roadmap generation
+- Beginner difficulty scoring
+- Best files/folders to start exploring
+- Suggested first PR recommendations
+- Contributor onboarding guidance
 
-### 📊 Repository Health Metrics
+### 📊 Repository Health Analytics
+- Repository health score
+- Maintainer activity analysis
+- Issue health scoring
+- Bus factor risk estimation
+- Community activity indicators
 
-Understand repository quality using practical engineering metrics:
+### ☁️ Azure AI Foundry Intelligence
+RepoPilot AI uses **Microsoft Azure AI Foundry IQ** for grounded repository understanding.
 
-* **Bus Factor Risk** — How dependent the project is on key contributors
-* **Issue Closing Time** — Average time taken to close issues
-* **Maintainer Responsiveness** — How active maintainers are
-* **Stale Issue Detection** — Tracks inactive issues
-* **Overall Health Score** — Repository quality score out of 100
+Instead of hallucinating, the AI:
 
-### 🛠 Accurate Tech Stack Detection
+1. Builds a repository knowledge base  
+2. Uploads repository context into a vector store  
+3. Uses **Foundry File Search**  
+4. Generates grounded explanations using retrieved repository context  
 
-Uses the **GitHub Languages API** for real language percentages instead of guessing.
-
-Example:
-
-```text
-JavaScript — 82%
-TypeScript — 12%
-CSS — 4%
-```
-
-### 🧑‍💻 Beginner Contribution Guide
-
-RepoPilot AI suggests:
-
-* Files beginners should explore
-* Good starting folders
-* Beginner-friendly issue areas
-* What to avoid when contributing
-
-### 📂 Folder Explanations
-
-Explains repository structure in a beginner-friendly way.
-
-Example:
-
-```text
-src/ → core application logic
-docs/ → documentation
-tests/ → testing files
-```
-
-### 🔥 Maintainer Activity Heatmap
-
-Shows when maintainers are most active to help contributors choose the best time to:
-
-* Open issues
-* Submit pull requests
-* Ask questions
+This produces **more reliable and explainable AI outputs**.
 
 ---
 
-## 🖼 Demo
-
-Paste any GitHub repository URL:
+## 🏗 System Architecture
 
 ```text
-https://github.com/facebook/react
-```
-
-RepoPilot AI instantly analyzes:
-
-✅ Repository complexity
-✅ Contribution difficulty
-✅ Tech stack
-✅ Maintainer activity
-✅ Beginner-friendly contribution areas
-✅ Repository health metrics
-
-**Example repositories to try:**
-
-* https://github.com/facebook/react
-* https://github.com/microsoft/vscode
-* https://github.com/openai/openai-python
-* https://github.com/tensorflow/tensorflow
-* https://github.com/pallets/flask
-
----
-
-## 🏗 Architecture
-
-```text
-Frontend (FastAPI + Vanilla JS)
-            ↓
-        FastAPI Backend
-            ↓
-      GitHub REST API
-            ↓
-      Analysis Engine
- ├── github_fetcher.py
- ├── repo_analyzer.py
- ├── metrics_analyzer.py
- └── ai_explainer.py
-            ↓
-       OpenRouter LLM
-            ↓
-       Dashboard UI
+GitHub Repository
+        ↓
+GitHub REST API
+        ↓
+Repository Intelligence Engine
+(Tech Stack + Metrics + Repo Analysis)
+        ↓
+Azure AI Foundry IQ
+(Vector Store + File Search)
+        ↓
+Grounded AI Insights
+        ↓
+FastAPI Backend
+        ↓
+Interactive Web Dashboard
 ```
 
 ---
 
-## 📁 Project Structure
+## 🧠 How RepoPilot AI Works
 
-```text
+### Step 1 — Repository Fetching
+RepoPilot AI fetches:
+
+- README content
+- Repository structure
+- Folder hierarchy
+- Issues and contribution signals
+- Maintainer activity data
+- Repository metadata
+
+### Step 2 — Repository Analysis
+The system detects:
+
+- Programming languages
+- Frameworks
+- Tech stack
+- Contribution areas
+- Project complexity
+
+### Step 3 — Azure AI Foundry IQ
+Repository context is uploaded into a **Foundry Vector Store**.
+
+Using **Foundry File Search**, the model retrieves grounded repository information before generating explanations.
+
+This prevents hallucinated repository summaries.
+
+### Step 4 — Contributor Guidance
+RepoPilot AI generates:
+
+- Beginner-friendly summaries
+- Contribution roadmaps
+- Folder explanations
+- Difficulty assessments
+- Suggested onboarding path
+
+---
+
+## 🛠 Tech Stack
+
+### Backend
+
+- Python
+- FastAPI
+- Uvicorn
+
+### AI & Cloud
+
+- Microsoft Azure AI Foundry
+- Azure AI Foundry IQ
+- Azure Vector Store
+- Foundry File Search
+- GPT-4.1-mini
+
+### Data Sources
+
+- GitHub REST API
+- GitHub Repository Metadata
+
+### Frontend
+
+- HTML
+- CSS
+- Vanilla JavaScript
+
+### Authentication
+
+- Azure CLI (`az login`)
+- DefaultAzureCredential()
+
+---
+
+## 📸 Screenshots
+
+### Home Dashboard
+*Add screenshot here*
+
+### Repository Analysis Output
+*Add screenshot here*
+
+### Contribution Roadmap
+*Add screenshot here*
+
+### Maintainer Activity Visualization
+*Add screenshot here*
+
+---
+
+## 📂 Project Structure
+
+```
 RepoPilot-AI-Web/
-├── main.py                    # FastAPI app
-├── github_fetcher.py          # GitHub REST API client
-├── repo_analyzer.py           # Tech stack & contribution analysis
-├── metrics_analyzer.py        # Repository health scoring
-├── ai_explainer.py            # AI-powered explanations
+│
+├── main.py
+│   ├── FastAPI application
+│   └── API endpoints
+│
+├── github_fetcher.py
+│   └── GitHub REST API client
+│
+├── repo_analyzer.py
+│   ├── Tech stack detection
+│   └── Contribution area analysis
+│
+├── metrics_analyzer.py
+│   └── Repository health scoring
+│
+├── foundry_agent.py
+│   ├── Azure AI Foundry integration
+│   ├── Vector store creation
+│   ├── File Search retrieval
+│   └── Grounded AI reasoning
 │
 ├── templates/
-│   └── index.html             # Main UI
+│   └── index.html
 │
 ├── static/
 │   ├── css/
-│   │   └── style.css          # UI styling
+│   │   └── style.css
+│   │
 │   └── js/
-│       └── app.js             # Frontend logic
+│       └── app.js
 │
 ├── requirements.txt
-└── .env.example
+├── .env.example
+└── README.md
 ```
 
 ---
 
-## ⚙️ Setup
+## ⚙️ Installation & Setup
 
-Clone the repository:
+### 1. Clone Repository
 
-```bash
-git clone <your-repo-url>
+```
+git clone https://github.com/your-username/RepoPilot-AI-Web.git
 cd RepoPilot-AI-Web
 ```
 
-Install dependencies:
+### 2. Create Virtual Environment
 
-```bash
+```
+python -m venv .venv
+```
+Activate environment:
+
+**Command Prompt (CMD)**
+
+```
+.venv\Scripts\activate
+```
+**PowerShell**
+
+```
+.\.venv\Scripts\Activate.ps1
+```
+
+### 3. Install Dependencies
+
+```
 pip install -r requirements.txt
 ```
 
-Create environment variables:
+### 4. Configure Environment Variables
+Copy environment template:
 
-```bash
+**Windows**
+
+```
+copy .env.example .env
+```
+**Mac/Linux**
+
+```
 cp .env.example .env
 ```
+Add the following:
 
-Add your keys to `.env`:
-
-```env
+```
 GITHUB_TOKEN=your_github_token
-OPENROUTER_API_KEY=your_openrouter_key
+
+FOUNDRY_PROJECT_ENDPOINT=https://your-project.services.ai.azure.com/api/projects/your-project
+
+FOUNDRY_MODEL_DEPLOYMENT=gpt-4.1-mini
 ```
 
-### Required API Keys
+### 5. Install Azure CLI
+Download Azure CLI:
 
-#### GitHub Token
+[Azure CLI Download](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?utm_source=chatgpt.com)
 
-Used for GitHub API access and higher rate limits.
+Verify installation:
 
-Without token:
+```
+az --version
+```
+Login:
 
-```text
-60 requests/hour
+```
+az login
 ```
 
-With token:
+### 6. Run Application
 
-```text
-5000 requests/hour
 ```
-
-Generate token:
-
-**GitHub → Settings → Developer Settings → Personal Access Tokens**
-
-Minimal permissions needed:
-
-* Public repositories
-* Read-only access
-
-#### OpenRouter API Key
-
-Used for AI-powered repository explanations.
-
-Get one at:
-
-https://openrouter.ai/
-
----
-
-## ▶️ Run Locally
-
-Start the FastAPI server:
-
-```bash
 uvicorn main:app --reload
 ```
+Open browser:
 
-Open in browser:
-
-```text
+```
 http://localhost:8000
 ```
 
 ---
 
-## 🔌 API Endpoint
+## 📡 API Documentation
 
 ### Analyze Repository
 
-```http
-GET /api/analyze?repo_url=<github-url-or-owner/repo>
+```
+GET /api/analyze?repo_url=
 ```
 
 ### Example
 
-```http
-GET /api/analyze?repo_url=https://github.com/facebook/react
+```
+GET /api/analyze?repo_url=microsoft/vscode
 ```
 
-Returns:
+### Returns
 
-* Repository summary
-* Health metrics
-* Tech stack
-* Beginner contribution guide
-* Folder explanations
-* Maintainer activity
-* Contribution roadmap
-
----
-
-## 🧠 Tech Stack
-
-### Backend
-
-* FastAPI
-* Python
-* GitHub REST API
-* OpenRouter API
-
-### Frontend
-
-* HTML
-* CSS
-* Vanilla JavaScript
-
-### Visualization
-
-* Plotly
+```
+{
+  "summary": "AI-generated repository summary",
+  "health_score": 87,
+  "tech_stack": ["TypeScript", "Electron"],
+  "folder_explanation": {},
+  "contribution_guide": {},
+  "maintainer_activity": {},
+  "issue_health": {}
+}
+```
 
 ---
 
-## 🎯 Why RepoPilot AI?
+## 💡 Example Use Cases
 
-Open-source repositories can be intimidating.
+### Beginner Contributors
+Understand unfamiliar repositories faster.
 
-New contributors often struggle to understand:
+### Open Source Programs
+Useful for:
 
-* What the project does
-* Where to start contributing
-* Which files matter
-* How active maintainers are
-* Whether the repository is healthy
+- GSoC
+- Hacktoberfest
+- First contributions
+- Community onboarding
 
-**RepoPilot AI solves this by turning complex repositories into beginner-friendly insights instantly.**
+### Maintainers
+Help onboard contributors more efficiently.
 
----
-
-## 🚀 Future Improvements
-
-* PR recommendation engine
-* Contributor trend analysis
-* Better beginner issue ranking
-* Multi-repository comparison
-* Repository health history tracking
-* Smart issue recommendations
+### Students
+Learn repository structure and technologies.
 
 ---
 
-## 🤝 Contributing
+## 🧪 Example Workflow
 
-Contributions are welcome.
+1. Paste GitHub repository URL
+2. RepoPilot fetches repository data
+3. Azure AI Foundry analyzes repository context
+4. AI generates grounded explanations
+5. User receives contribution roadmap
 
-Feel free to:
+---
 
-* Open issues
-* Suggest improvements
-* Submit pull requests
+## 🎥 Demo Video
+*Add demo video link here*
+
+---
+
+## 🔮 Future Improvements
+
+- AI contributor match score
+- Personalized issue recommendations
+- PR success prediction
+- Contributor skill-based onboarding
+- Multi-repository comparison
+- GitHub Copilot integration
+- Repo learning paths
+
+---
+
+## 🏆 Microsoft AI Skills Fest Alignment
+RepoPilot AI leverages **Microsoft Azure AI Foundry** to make open-source contribution more accessible and beginner-friendly.
+
+By combining:
+
+- GitHub Repository Intelligence
+- Azure AI Foundry IQ
+- Grounded Retrieval
+- Contributor Guidance
+
+RepoPilot AI transforms confusing repositories into actionable contributor intelligence.
+
+---
+
+## 👨‍💻 Team
+
+### Aman & Contributors
+Built for the **Microsoft AI Skills Fest Hackathon 2026**
 
 ---
 
 ## 📜 License
-
 MIT License
 
----
+```
 
-### ⭐ If you found RepoPilot AI useful, consider starring the repository!
+``` 
